@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.9a-.01 (2025-05-20)
+## 1.9a-0.1 (2025-05-20)
 
 * Fork from original.  Supports new direction type "O" for optional.  Small formatting changes.
 
