@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.9a-.01 (2025-05-20)
+
+* Fork from original.  Supports new direction type "O" for optional.  Small formatting changes.
+
 ## 1.9 (2021-08-08)
 
 * Properly removes outdated recordings with new event types and upload flags from May 2021 firmware. (#4)
