@@ -15,7 +15,10 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-__version__ = "1.9a"
+__version__ = "1.9a-0.1"
+
+### Modified from OP to include direction O for optional in the regex, and loop the main as prep for system service
+### Reformatted namedtuple instantiation
 
 import argparse
 import datetime
@@ -104,7 +107,7 @@ def calc_cutoff_date(keep):
 
 
 # represents a recording from the dashcam; the dashcam serves the list of video recording filenames (front and rear)
-Recording = namedtuple("Recording", "filename base_filename group_name datetime type direction")
+Recording = namedtuple("Recording", ['filename', 'base_filename', 'group_name', 'datetime', 'type', 'direction'])
 
 # dashcam recording filename regular expression
 #
@@ -128,7 +131,7 @@ Recording = namedtuple("Recording", "filename base_filename group_name datetime 
 filename_re = re.compile(r"""(?P<base_filename>(?P<year>\d\d\d\d)(?P<month>\d\d)(?P<day>\d\d)
     _(?P<hour>\d\d)(?P<minute>\d\d)(?P<second>\d\d))
     _(?P<type>[NEPMIOATBRXG])
-    (?P<direction>[FRI])
+    (?P<direction>[FRIO])
     (?P<upload>[LS]?)
     \.(?P<extension>mp4)""", re.VERBOSE)
 
@@ -338,7 +341,7 @@ def sort_recordings(recordings, recording_priority):
 
     # preferred orderings (by type and direction)
     recording_types = "MEIBOATRXGNP"
-    recording_directions = "FRI"
+    recording_directions = "FRIO"
 
     # tomorrow, for reverse datetime sorting
     tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
@@ -381,7 +384,7 @@ group_name_globs = {
 }
 
 # represents a recording downloaded to the destination; matches all files (video front/rear, gps, etc.)
-DownloadedRecording = namedtuple("DownloadedRecording", "base_filename group_name datetime")
+DownloadedRecording = namedtuple('DownloadedRecording', ['base_filename', 'group_name', 'datetime')
 
 # downloaded recording filename regular expression
 downloaded_filename_re = re.compile(r"""^(?P<base_filename>(?P<year>\d\d\d\d)(?P<month>\d\d)(?P<day>\d\d)
@@ -681,4 +684,6 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    while true:
+        run()
+        time.sleep(60)
