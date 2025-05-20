@@ -38,7 +38,7 @@ import urllib.request
 import socket
 
 # logging
-logging.basicConfig(format="%(asctime)s: %(levelname)s %(message)s")
+logging.basicConfig(filename="sync.log", format="%(asctime)s: %(levelname)s %(message)s")
 
 # root logger
 logger = logging.getLogger()
@@ -384,7 +384,7 @@ group_name_globs = {
 }
 
 # represents a recording downloaded to the destination; matches all files (video front/rear, gps, etc.)
-DownloadedRecording = namedtuple('DownloadedRecording', ['base_filename', 'group_name', 'datetime')
+DownloadedRecording = namedtuple('DownloadedRecording', ['base_filename', 'group_name', 'datetime'])
 
 # downloaded recording filename regular expression
 downloaded_filename_re = re.compile(r"""^(?P<base_filename>(?P<year>\d\d\d\d)(?P<month>\d\d)(?P<day>\d\d)
@@ -684,6 +684,6 @@ def run():
 
 
 if __name__ == "__main__":
-    while true:
+    while True:
         run()
         time.sleep(60)
