@@ -435,12 +435,12 @@ def get_outdated_recordings(destination, grouping):
 
     downloaded_recordings = get_downloaded_recordings(destination, grouping)
 
-    return [x for x in downloaded_recordings if x.datetime.date() < cutoff_date]
+    return [x for x in downloaded_recordings if x.datime.date() < cutoff_date]
 
 
 def get_current_recordings(recordings):
     """returns the recordings that are after or on the cutoff date"""
-    return recordings if cutoff_date is None else [x for x in recordings if x.datetime.date() >= cutoff_date]
+    return recordings if cutoff_date is None else [x for x in recordings if x.datime.date() >= cutoff_date]
 
 
 def get_filtered_recordings(recordings, recording_filter):
